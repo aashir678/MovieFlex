@@ -40,6 +40,7 @@ function showMovie(film) {
 }
 
 function renderMovies(filter) {
+  showMovie(film);
   if (filter === "LOW_TO_HIGH") {
     data.Search.sort((a, b) => a.Year - b.Year);
   }
