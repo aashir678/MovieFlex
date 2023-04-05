@@ -39,11 +39,21 @@ function showMovie(film) {
         `;
 }
 
-function renderMovies(filter) {
-  showMovie(film);
-  if (filter === "LOW_TO_HIGH") {
-    data.Search.sort((a, b) => a.Year - b.Year);
-  }
+ async function renderMovies(filter) {
+  const fetchMovie = await fetch(
+    `https://www.omdbapi.com/?apikey=6449adca&s=${filter}}`
+  );
+  const data = await fetchMovie.json();
+
+  movieInfo.innerHTML = data.Search.filter((movie)=> {
+    if (filter === "LOW_TO_HIGH") {
+
+      data.Search.sort((a, b) => a.Year - b.Year);
+    }
+
+  }).join("");
+  
+ 
 }
 
 function filterMovies(event) {
